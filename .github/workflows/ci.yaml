@@ -1,7 +1,7 @@
 name: CI
 
 env:
-  VERSION_GO: '1.18'
+  VERSION_GO: '1.19'
 
 on:
   pull_request:
@@ -26,6 +26,8 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
+
+      - uses: nolar/setup-k3d-k3s@v1.0.8
 
       - name: Run unit tests
         run: make
